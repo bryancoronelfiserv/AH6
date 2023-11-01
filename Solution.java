@@ -1,6 +1,7 @@
-import java.util.List;
+package AH6;
 
-import javax.xml.transform.Source;
+import java.util.ArrayList;
+import java.util.List;
 
 class Node<T> {
   T val;
@@ -13,12 +14,20 @@ class Node<T> {
 }
 
 class Solution {
-  public static List<String> linkedListValues(Node<String> head) {
-    // todo
-    return;
+  public static <T> List<T> linkedListValues(Node<T> head) {
+
+    List<T> values = new ArrayList<>();
+    Node<T> current = head;
+    // loop until reach end
+    while (current != null) {
+      values.add(current.val);
+      current = current.next;
+    }
+    return values;
   }
 
-  public static void main() {
+  public static void main(String[] args) {
+
     Node<String> a = new Node<>("a");
     Node<String> b = new Node<>("b");
     Node<String> c = new Node<>("c");
@@ -28,8 +37,19 @@ class Solution {
     c.next = d;
 
     // a -> b -> c -> d
-
-    Solution.linkedListValues(a); 
+    System.out.println(Solution.linkedListValues(a));
     // -> [ "a", "b", "c", "d" ]
+
+    // test case 2
+    Node<String> e = new Node<>("e");
+    Node<String> f = new Node<>("f");
+    Node<String> g = new Node<>("g");
+    Node<String> h = new Node<>("h");
+    e.next = f;
+    f.next = g;
+    g.next = h;
+    // e -> f -> g -> h
+    System.out.println(Solution.linkedListValues(e));
+    // -> [ "e", "f", "g", "h" ]
   }
 }
